@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="base_frame_id"   value="09/base_link"/>
+  <arg name="global_frame_id" value="map"/>
+  <arg name="lookahead"       value="0.3"/>
+  <arg name="dist_tolerance"  value="0.3"/>
+  <arg name="robot_id"        value="9"/>
+  <arg name="max_linear_vel"  value="0.3"/>
+  
+  <!-- Node to control the robot-->
+  <node name="control" pkg="mcva_project" type="control.py" output="screen">
+    <param name="max_linear_vel"        value="$(arg max_linear_vel)"/>
+    <param name="frame_id"              value="$(arg global_frame_id)"/>
+    <param name="base_frame_id"         value="$(arg base_frame_id)"/>
+    <param name="lookahead"             value="$(arg lookahead)"/>
+    <param name="dist_tolerance"        value="$(arg dist_tolerance)"/>
+    <param name="robot_id"              value="~(arg robot_id)"/>
+  </node>
+
+  <node name="planner" pkg="mcva_project" type="planner.py" output="screen">
+    <param name="base_frame_id"     value="$(arg base_frame_id)"/>
+    <param name="global_frame_id"   value="$(arg base_frame_id)"/>
+  </node>
+
+  <!-- TARS -->
+  <include file="$(find tars)/launch/ccia_h.launch"/>
+
+</launch>
+
