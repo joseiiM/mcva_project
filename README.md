@@ -49,3 +49,20 @@ en un entorno simulado. Para utilizar TARS será necesario clonar el repositorio
 tu workspace.
 
 - ***TARS***: https://github.com/Ignacio-Perez/TARS
+
+# Modo de uso
+
+Para ejecutar el proyecto debes ejecutar el siguiente comando:
+```
+roslaunch mcva_project planner.launch
+```
+Tras ejecutar el comando se abrirá una ventana con el visualizador rviz de ROS
+donde podremos observar el mapa con los obstáculos remarcados en negro, una serie
+de agentes en movimiento y nuestro robot.
+
+El robot comenzará buscando a su objetivo recorriendo el mapa de manera aleatoria 
+hasta que lo encuentre. Una vez encontrado el objetivo, el robot comenzará a planificar 
+la ruta más corta encontrada a través del algoritmo Theta * hacia la posición del objetivo
+cada cierto tiempo, de manera que vaya siguiendo a su objetivo. En caso de perderlo de 
+durante un largo periodo de tiempo, este volverá de nuevo a buscar a su objetivo de
+manera aleatoria por el mapa hasta encontrarlo de nuevo.
